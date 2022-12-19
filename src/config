@@ -1,0 +1,10 @@
+//ÅäÖÃÎÄ¼ş
+#tanks count at initialization
+initTankCount=10
+tankSpeed=4
+bulletSpeed=10
+gameWidth=1080
+gameHeight=720
+#fireStrategy
+goodFs=com.Study.tank.FourDirFireStrategy
+badFs=com.Study.tank.DefaultFireStrategy
