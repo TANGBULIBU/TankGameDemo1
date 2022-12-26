@@ -1,4 +1,7 @@
-package comGameModel;
+package comGameModel.stragety;
+
+import comGameModel.Bullet;
+import comGameModel.Tank;
 
 /**
  * @author ¼¦ÍÈ×Ó

@@ -1,5 +1,9 @@
 package comGameModel;
 
+import comGameModel.stragety.DefaultFireStrategy;
+import comGameModel.stragety.FireStrategy;
+import comGameModel.stragety.FourDirFireStrategy;
+
 import java.awt.*;
 import java.util.Random;
 
@@ -7,9 +11,9 @@ import java.util.Random;
  * @author 鸡腿子
  * @version 1.0
  */
-public class Tank {//将坦克固有类封装给坦克 并且实现构造方法 以调用方向速度等
-    int x, y;
-    Dir dir = Dir.DOWN;//特有属性 默认朝向
+public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 以调用方向速度等
+    public int x, y;
+    public Dir dir = Dir.DOWN;//特有属性 默认朝向
     private static final int SPEED = 4;//不能呗改变
 
     public static int WIDTH = ResourceMgr.goodTankU.getWidth();
@@ -21,16 +25,19 @@ public class Tank {//将坦克固有类封装给坦克 并且实现构造方法 以调用方向速度等
 
 
     private Random random = new Random();//生成随机数
-    Group group = Group.BAD;
+    public Group group = Group.BAD;
 
     FireStrategy fs = new FourDirFireStrategy();
-    GameModel gm;
+    public GameModel gm;
 
     /**
      * rectangle 每次移动需要碰撞检测 也就是有n*m此检测 2mn的新对象 消除这个数据
      */
     Rectangle rect = new Rectangle();//记录坦克数据
 
+    public Rectangle getRect() {
+        return rect;
+    }
 
     public Tank(int x, int y, Dir dir, Group group, GameModel gm) {//将子弹引入
         super();
@@ -64,7 +71,7 @@ public class Tank {//将坦克固有类封装给坦克 并且实现构造方法 以调用方向速度等
     public void paint(Graphics g) {
 
         if (!living) {
-            gm.tanks.remove(this);//如果没有存活 就不绘制 被消灭的话 就移除
+            gm.remove(this);//如果没有存活 就不绘制 被消灭的话 就移除
         }
 
         //判定是好的坦克还是坏的坦克
@@ -187,5 +194,9 @@ public class Tank {//将坦克固有类封装给坦克 并且实现构造方法 以调用方向速度等
 
     public void die() {
         this.living = false;
+    }
+
+    public void stop() {
+        moving = false;
     }
 }

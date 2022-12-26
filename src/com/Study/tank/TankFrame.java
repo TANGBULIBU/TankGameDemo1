@@ -1,5 +1,7 @@
 package com.Study.tank;
 
+import comGameModel.GameModel;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -14,14 +16,13 @@ import java.util.List;
  */
 public class TankFrame extends Frame {
 
+    GameModel gm = new GameModel();
 
     Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD, this);//this 就是控制子弹的发射
 
     List<Tank> tanks = new ArrayList<>();//数组
     List<Bullet> bullets = new ArrayList<>();//数组
     List<Explode> explodes = new ArrayList<>();
-
-
 
     static final int GAME_WIDTH = 1080, GAME_HEIGHT = 960;//抽象为常量 更改一个位置即可
 
@@ -65,6 +66,7 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
+
         Color c = g.getColor();
         g.setColor(Color.WHITE);
         g.drawString("子弹的数量" + bullets.size(), 10, 60);

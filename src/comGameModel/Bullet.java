@@ -6,7 +6,7 @@ import java.awt.*;
  * @author 鸡腿子
  * @version 1.0
  */
-public class Bullet {
+public class Bullet extends GameObject{
     private static final int SPEED = 10;
     public static int WIDTH = ResourceMgr.bulletD.getWidth();
     public static int HEIGHT = ResourceMgr.bulletD.getHeight();
@@ -33,7 +33,7 @@ public class Bullet {
         rect.width = WIDTH;
         rect.height = HEIGHT;
 
-        gm.bullets.add(this);//自己加到bullets队列
+        gm.add(this);//自己加到bullets队列
 
     }
 
@@ -47,7 +47,7 @@ public class Bullet {
 
     public void paint(Graphics g) {//绘制子弹
         if (!living) {
-            gm.bullets.remove(this);//如果没有存活 就移除
+            gm.remove(this);//如果没有存活 就移除
         }
 
         switch (dir) {
@@ -114,7 +114,7 @@ public class Bullet {
 
             int eX = tank.getX() + tank.WIDTH / 2 - Explode.WIDTH / 2;
             int eY = tank.getY() + tank.HEIGHT / 2 - Explode.HEIGHT / 2;
-            gm.explodes.add(new Explode(eX, eY, gm));
+            gm.add(new Explode(eX, eY, gm));
         }
 
     }
