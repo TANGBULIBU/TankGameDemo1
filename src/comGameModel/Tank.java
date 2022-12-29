@@ -196,7 +196,7 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
         this.living = false;
     }
 
-    public void stop() {
-        moving = false;
+    public void stop() {//如果碰撞则停止行动 但是问题是下一步无法再重新启动 需要调用到上一个位置来
+//        moving = false;
     }
 }

@@ -8,3 +8,5 @@ gameHeight=720
 #fireStrategy
 goodFs=com.Study.tank.FourDirFireStrategy
 badFs=com.Study.tank.DefaultFireStrategy
+#colliders
+colliders=comGameModel.cor.BulletTankCollider,comGameModel.cor.TankTankCollider

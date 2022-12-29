@@ -2,6 +2,7 @@ package comGameModel;
 
 import comGameModel.cor.BulletTankCollider;
 import comGameModel.cor.Collider;
+import comGameModel.cor.ColliderChain;
 import comGameModel.cor.TankTankCollider;
 
 import java.awt.*;
@@ -22,6 +23,8 @@ public class GameModel {
 //    List<Explode> explodes = new ArrayList<>();
     Collider collider=new BulletTankCollider();
     Collider collider2=new TankTankCollider();
+
+    ColliderChain chain=new ColliderChain();
 
     //以上List现在只需向Object中加入
 
@@ -69,8 +72,10 @@ public class GameModel {
                 GameObject o1=objects.get(i);
                 GameObject o2=objects.get(j);
 
-                collider.collide(o1,o2);
-                collider2.collide(o1,o2);
+//                collider.collide(o1,o2);
+//                collider2.collide(o1,o2);
+
+                chain.collide(o1,o2);
             }
         }
 //        for (int i = 0; i < bullets.size(); i++) {//子弹和坦克碰撞
