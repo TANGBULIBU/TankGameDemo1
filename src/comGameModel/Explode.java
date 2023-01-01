@@ -23,15 +23,11 @@ public class Explode extends GameObject{
         this.gm = gm;
     }
 
-
     public void paint(Graphics g) {//绘制子弹
         g.drawImage(ResourceMgr.explodes[step++], x, y, null);//使用爆炸并且每进行一步++
         if (step >= ResourceMgr.explodes.length) {
             gm.remove(this);
         }
-
-
-
 
     }
 }

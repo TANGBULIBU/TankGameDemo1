@@ -12,7 +12,7 @@ public class BulletTankCollider implements Collider {
 
     @Override
     public boolean collide(GameObject o1, GameObject o2) {
-        if (o1 instanceof Bullet && o2 instanceof Tank) {
+        if (o1 instanceof Bullet && o2 instanceof Tank) {//前一个物体和子弹碰撞 后一个物体和坦克碰撞都算
             Bullet b = (Bullet) o1;
             Tank t = (Tank) o2;
 //            b.collideWith(t);//bullet 和tank接触

@@ -18,13 +18,13 @@ public class GameModel {
 
     Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD, this);//this 就是控制子弹的发射
 
-//    List<Tank> tanks = new ArrayList<>();//数组
+    //    List<Tank> tanks = new ArrayList<>();//数组
 //    List<Bullet> bullets = new ArrayList<>();//数组
 //    List<Explode> explodes = new ArrayList<>();
-    Collider collider=new BulletTankCollider();
-    Collider collider2=new TankTankCollider();
+    Collider collider = new BulletTankCollider();
+    Collider collider2 = new TankTankCollider();
 
-    ColliderChain chain=new ColliderChain();
+    ColliderChain chain = new ColliderChain();
 
     //以上List现在只需向Object中加入
 
@@ -34,7 +34,7 @@ public class GameModel {
         int initTankCount = Integer.parseInt((String) PropertyMgr.get("initTankCount"));
         //初始化敌方坦克
         for (int i = 0; i < initTankCount; i++) {
-            add( new Tank(50 + i * 100, 200, Dir.DOWN, Group.BAD, this));
+            add(new Tank(50 + i * 100, 200, Dir.DOWN, Group.BAD, this));
         }
     }
 
@@ -68,14 +68,14 @@ public class GameModel {
          */
 
         for (int i = 0; i < objects.size(); i++) {
-            for (int j = 0; j < objects.size(); j++) {
-                GameObject o1=objects.get(i);
-                GameObject o2=objects.get(j);
+            for (int j = i+1; j < objects.size(); j++) {//此处是i+1
+                GameObject o1 = objects.get(i);
+                GameObject o2 = objects.get(j);
 
 //                collider.collide(o1,o2);
 //                collider2.collide(o1,o2);
 
-                chain.collide(o1,o2);
+                chain.collide(o1, o2);
             }
         }
 //        for (int i = 0; i < bullets.size(); i++) {//子弹和坦克碰撞

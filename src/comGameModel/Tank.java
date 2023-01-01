@@ -13,6 +13,7 @@ import java.util.Random;
  */
 public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 以调用方向速度等
     public int x, y;
+    int oldX, oldY;//记录上一次位置所在
     public Dir dir = Dir.DOWN;//特有属性 默认朝向
     private static final int SPEED = 4;//不能呗改变
 
@@ -93,12 +94,20 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
                 break;
 
         }
-
-
         move();
     }
 
+    public void back() {//当前位置回到之前
+        x = oldX;
+        y = oldY;
+    }
+
     private void move() {
+
+        //记录移动之前的位置
+        oldX = x;
+        oldY = y;
+
         if (!moving) return;
 
         switch (dir) {
@@ -124,10 +133,8 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
         if (this.group == Group.BAD && random.nextInt(100) > 95)
             randomDir();
 
-
         //边界检测
         boundCheck();
-
 
         //update rect
         rect.x = this.x;
@@ -163,6 +170,8 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
     public boolean isMoving() {
         return moving;
     }
+
+
 
     public void setMoving(boolean moving) {
         this.moving = moving;
