@@ -7,9 +7,9 @@ package com.Study.tank;
 public class FourDirFireStrategy implements FireStrategy {
 
     @Override
-    public void fire(Tank t) {
-        int bx = t.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;//坦克发射子弹的位置
-        int by = t.y + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;//坦克发射子弹的位置
+    public void fire(Wall t) {
+        int bx = t.x + Wall.WIDTH / 2 - Bullet.WIDTH / 2;//坦克发射子弹的位置
+        int by = t.y + Wall.HEIGHT / 2 - Bullet.HEIGHT / 2;//坦克发射子弹的位置
 
         Dir[] dirs = Dir.values();
         for (Dir dir : dirs) {

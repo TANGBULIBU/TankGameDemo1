@@ -6,7 +6,7 @@ import java.awt.*;
  * @author 鸡腿子
  * @version 1.0
  */
-public class Bullet extends GameObject{
+public class Bullet extends GameObject {
     private static final int SPEED = 10;
     public static int WIDTH = ResourceMgr.bulletD.getWidth();
     public static int HEIGHT = ResourceMgr.bulletD.getHeight();
@@ -17,7 +17,7 @@ public class Bullet extends GameObject{
     GameModel gm = null;
     private Group group = Group.BAD;
 
-    Rectangle rect = new Rectangle();//记录子弹数据
+     public Rectangle rect = new Rectangle();//记录子弹数据
 
 
     public Bullet(int x, int y, Dir dir, Group group, GameModel gm) {
@@ -121,7 +121,7 @@ public class Bullet extends GameObject{
 
     }
 
-    private void die() {
+    public void die() {
         this.living = false;
     }
 

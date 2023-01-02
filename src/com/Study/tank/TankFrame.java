@@ -18,9 +18,9 @@ public class TankFrame extends Frame {
 
     GameModel gm = new GameModel();
 
-    Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD, this);//this 就是控制子弹的发射
+    Wall myTank = new Wall(200, 400, Dir.DOWN, Group.GOOD, this);//this 就是控制子弹的发射
 
-    List<Tank> tanks = new ArrayList<>();//数组
+    List<Wall> tanks = new ArrayList<>();//数组
     List<Bullet> bullets = new ArrayList<>();//数组
     List<Explode> explodes = new ArrayList<>();
 

@@ -13,7 +13,7 @@ import java.util.List;
  * @author 鸡腿子
  * @version 1.0
  */
-public class GameModel {
+public class GameModel {//定义物体和他有关
 
 
     Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD, this);//this 就是控制子弹的发射
@@ -36,6 +36,12 @@ public class GameModel {
         for (int i = 0; i < initTankCount; i++) {
             add(new Tank(50 + i * 100, 200, Dir.DOWN, Group.BAD, this));
         }
+
+        //初始化墙
+        add(new Wall(150,150,200,50));
+        add(new Wall(550,150,200,50));
+        add(new Wall(300,300,50,200));
+        add(new Wall(550,300,50,200));
     }
 
     public void add(GameObject go) {

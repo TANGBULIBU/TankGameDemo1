@@ -34,7 +34,7 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
     /**
      * rectangle 每次移动需要碰撞检测 也就是有n*m此检测 2mn的新对象 消除这个数据
      */
-    Rectangle rect = new Rectangle();//记录坦克数据
+    public Rectangle rect = new Rectangle();//记录坦克数据
 
     public Rectangle getRect() {
         return rect;

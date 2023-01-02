@@ -14,8 +14,10 @@ public class ColliderChain {
     private List<Collider> colliders = new LinkedList<>();
 
     public ColliderChain(){
-        add(new BulletTankCollider());
-        add(new TankTankCollider());
+        add(new BulletTankCollider());//×Óµ¯Ì¹¿ËÅö×²
+        add(new TankTankCollider());//Ì¹¿ËÌ¹¿ËÅö×²
+        add(new BulletWallCollider());//×Óµ¯Ç½Åö×²
+        add(new TankWallCollider());//Ì¹¿ËºÍÇ½µÄÅö×²
     }
 
     public void add(Collider c) {
