@@ -28,7 +28,7 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
     private Random random = new Random();//生成随机数
     public Group group = Group.BAD;
 
-    //git
+    //git 测试
 
     FireStrategy fs = new FourDirFireStrategy();
 
