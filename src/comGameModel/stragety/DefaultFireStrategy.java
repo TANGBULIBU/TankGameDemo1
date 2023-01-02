@@ -15,7 +15,7 @@ public class DefaultFireStrategy implements FireStrategy {//默认开火策略
         int bx = t.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;//坦克发射子弹的位置
         int by = t.y + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;//坦克发射子弹的位置
 
-        new Bullet(bx, by, t.dir, t.group, t.gm);//从坦克的位置发射出来子弹
+        new Bullet(bx, by, t.dir, t.group);//从坦克的位置发射出来子弹
 
 //        if (t.group==Group.GOOD)new Thread()->new Audio("audio/ta")
     }

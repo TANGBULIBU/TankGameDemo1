@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class TankFrame extends Frame {
 
-    GameModel gm = new GameModel();
+//    GameModel gm = new GameModel();
 
     Wall myTank = new Wall(200, 400, Dir.DOWN, Group.GOOD, this);//this 就是控制子弹的发射
 

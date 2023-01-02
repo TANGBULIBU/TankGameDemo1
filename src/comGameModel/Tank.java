@@ -29,7 +29,7 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
     public Group group = Group.BAD;
 
     FireStrategy fs = new FourDirFireStrategy();
-    public GameModel gm;
+
 
     /**
      * rectangle 每次移动需要碰撞检测 也就是有n*m此检测 2mn的新对象 消除这个数据
@@ -40,13 +40,13 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
         return rect;
     }
 
-    public Tank(int x, int y, Dir dir, Group group, GameModel gm) {//将子弹引入
+    public Tank(int x, int y, Dir dir, Group group) {//将子弹引入
         super();
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.group = group;
-        this.gm = gm;
+
 
         //记录坦克数据
         rect.x = this.x;
@@ -66,13 +66,16 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
         } else {
             fs = new DefaultFireStrategy();//默认发射方式
         }
+
+        //new一个新的坦克
+        GameModel.getInstance().add(this);
     }
 
 
     public void paint(Graphics g) {
 
         if (!living) {
-            gm.remove(this);//如果没有存活 就不绘制 被消灭的话 就移除
+            GameModel.getInstance().remove(this);//如果没有存活 就不绘制 被消灭的话 就移除
         }
 
         //判定是好的坦克还是坏的坦克

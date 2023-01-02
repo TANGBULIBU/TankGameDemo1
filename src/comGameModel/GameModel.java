@@ -1,9 +1,7 @@
 package comGameModel;
 
-import comGameModel.cor.BulletTankCollider;
-import comGameModel.cor.Collider;
+
 import comGameModel.cor.ColliderChain;
-import comGameModel.cor.TankTankCollider;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,14 +13,18 @@ import java.util.List;
  */
 public class GameModel {//定义物体和他有关
 
+    private static final GameModel INSTANCE = new GameModel();
 
-    Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD, this);//this 就是控制子弹的发射
+    static {//静态语句块
+        INSTANCE.init();
+    }
 
+
+    //   Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD);//this 就是控制子弹的发射
+    Tank myTank;
     //    List<Tank> tanks = new ArrayList<>();//数组
-//    List<Bullet> bullets = new ArrayList<>();//数组
-//    List<Explode> explodes = new ArrayList<>();
-    Collider collider = new BulletTankCollider();
-    Collider collider2 = new TankTankCollider();
+    //    List<Bullet> bullets = new ArrayList<>();//数组
+    //    List<Explode> explodes = new ArrayList<>();
 
     ColliderChain chain = new ColliderChain();
 
@@ -30,18 +32,30 @@ public class GameModel {//定义物体和他有关
 
     private List<GameObject> objects = new ArrayList<>();
 
-    public GameModel() {
+    public static GameModel getInstance() {//饿汉式
+        return INSTANCE;
+    }
+
+    private GameModel() {
+
+    }
+
+    private void init() {//初始化 initialize
+        //初始化主站坦克
+        myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD);//this 就是控制子弹的发射
+
+
         int initTankCount = Integer.parseInt((String) PropertyMgr.get("initTankCount"));
         //初始化敌方坦克
         for (int i = 0; i < initTankCount; i++) {
-            add(new Tank(50 + i * 100, 200, Dir.DOWN, Group.BAD, this));
+            new Tank(50 + i * 100, 200, Dir.DOWN, Group.BAD);
         }
 
         //初始化墙
-        add(new Wall(150,150,200,50));
-        add(new Wall(550,150,200,50));
-        add(new Wall(300,300,50,200));
-        add(new Wall(550,300,50,200));
+        add(new Wall(150, 150, 200, 50));
+        add(new Wall(550, 150, 200, 50));
+        add(new Wall(300, 300, 50, 200));
+        add(new Wall(550, 300, 50, 200));
     }
 
     public void add(GameObject go) {
@@ -74,7 +88,7 @@ public class GameModel {//定义物体和他有关
          */
 
         for (int i = 0; i < objects.size(); i++) {
-            for (int j = i+1; j < objects.size(); j++) {//此处是i+1
+            for (int j = i + 1; j < objects.size(); j++) {//此处是i+1
                 GameObject o1 = objects.get(i);
                 GameObject o2 = objects.get(j);
 

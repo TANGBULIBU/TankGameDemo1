@@ -14,18 +14,18 @@ public class Bullet extends GameObject {
     private Dir dir;
 
     private boolean living = true;
-    GameModel gm = null;
-    private Group group = Group.BAD;
+//    GameModel gm = null;
+    public Group group = Group.BAD;
 
      public Rectangle rect = new Rectangle();//记录子弹数据
 
 
-    public Bullet(int x, int y, Dir dir, Group group, GameModel gm) {
+    public Bullet(int x, int y, Dir dir, Group group) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.group = group;
-        this.gm = gm;
+
 
         //记录子弹数据
         rect.x = this.x;
@@ -33,7 +33,8 @@ public class Bullet extends GameObject {
         rect.width = WIDTH;
         rect.height = HEIGHT;
 
-        gm.add(this);//自己加到bullets队列
+//        gm.add(this);//自己加到bullets队列
+        GameModel.getInstance().add(this);//饿汉式只能通过调用getInstance才能添加
 
     }
 
@@ -47,7 +48,7 @@ public class Bullet extends GameObject {
 
     public void paint(Graphics g) {//绘制子弹
         if (!living) {
-            gm.remove(this);//如果没有存活 就移除
+            GameModel.getInstance().remove(this);//如果没有存活 就移除
         }
 
         switch (dir) {
@@ -99,27 +100,27 @@ public class Bullet extends GameObject {
         rect.y = this.y;
     }
 
-    public boolean collideWith(Tank tank) {
-
-        if (this.group == tank.getGroup()) return false;//队友伤害默认不开启
-
-//        //TODO 用一个rect记录子弹的位置
-//        Rectangle rect1 = new Rectangle(this.x, this.y, WIDTH, HEIGHT);// Rectangle 矩形 this子弹的位置数据
-//        Rectangle rect2 = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);// tank的位置数据
-
-
-        if (rect.intersects(tank.rect)) {//对象1，2相交
-            tank.die();
-            this.die();
-
-            int eX = tank.getX() + tank.WIDTH / 2 - Explode.WIDTH / 2;
-            int eY = tank.getY() + tank.HEIGHT / 2 - Explode.HEIGHT / 2;
-            gm.add(new Explode(eX, eY, gm));
-            return true;
-        }
-        return false;
-
-    }
+//    public boolean collideWith(Tank tank) {
+//
+//        if (this.group == tank.getGroup()) return false;//队友伤害默认不开启
+//
+////        //TODO 用一个rect记录子弹的位置
+////        Rectangle rect1 = new Rectangle(this.x, this.y, WIDTH, HEIGHT);// Rectangle 矩形 this子弹的位置数据
+////        Rectangle rect2 = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);// tank的位置数据
+//
+//
+//        if (rect.intersects(tank.rect)) {//对象1，2相交
+//            tank.die();
+//            this.die();
+//
+//            int eX = tank.getX() + tank.WIDTH / 2 - Explode.WIDTH / 2;
+//            int eY = tank.getY() + tank.HEIGHT / 2 - Explode.HEIGHT / 2;
+//            gm.add(new Explode(eX, eY, gm));
+//            return true;
+//        }
+//        return false;
+//
+//    }
 
     public void die() {
         this.living = false;
