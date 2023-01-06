@@ -12,7 +12,7 @@ import java.util.Random;
  * @version 1.0
  */
 public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 以调用方向速度等
-    public int x, y;
+
     int oldX, oldY;//记录上一次位置所在
     public Dir dir = Dir.DOWN;//特有属性 默认朝向
     private static final int SPEED = 4;//不能呗改变
@@ -177,7 +177,6 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
     }
 
 
-
     public void setMoving(boolean moving) {
         this.moving = moving;
     }
@@ -213,4 +212,15 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
     public void stop() {//如果碰撞则停止行动 但是问题是下一步无法再重新启动 需要调用到上一个位置来
 //        moving = false;
     }
+
+    @Override
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
+    }
+
 }

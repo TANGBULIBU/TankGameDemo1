@@ -1,7 +1,12 @@
 package comGameModel.stragety;
 
 import comGameModel.Bullet;
+import comGameModel.GameModel;
 import comGameModel.Tank;
+import comGameModel.decorator.RectDecorator;
+import comGameModel.decorator.TailDecorator;
+
+import java.awt.*;
 
 /**
  * @author 鸡腿子
@@ -15,7 +20,11 @@ public class DefaultFireStrategy implements FireStrategy {//默认开火策略
         int bx = t.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;//坦克发射子弹的位置
         int by = t.y + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;//坦克发射子弹的位置
 
-        new Bullet(bx, by, t.dir, t.group);//从坦克的位置发射出来子弹
+        //BUG new Bullet 把自己加了一遍
+        GameModel.getInstance().add(
+                new RectDecorator(
+                        new TailDecorator(
+                        new Bullet(bx, by, t.dir, t.group))));//从坦克的位置发射出来子弹
 
 //        if (t.group==Group.GOOD)new Thread()->new Audio("audio/ta")
     }

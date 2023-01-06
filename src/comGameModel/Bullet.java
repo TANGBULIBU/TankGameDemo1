@@ -10,14 +10,13 @@ public class Bullet extends GameObject {
     private static final int SPEED = 10;
     public static int WIDTH = ResourceMgr.bulletD.getWidth();
     public static int HEIGHT = ResourceMgr.bulletD.getHeight();
-    private int x, y;
     private Dir dir;
 
     private boolean living = true;
-//    GameModel gm = null;
+    //    GameModel gm = null;
     public Group group = Group.BAD;
 
-     public Rectangle rect = new Rectangle();//记录子弹数据
+    public Rectangle rect = new Rectangle();//记录子弹数据
 
 
     public Bullet(int x, int y, Dir dir, Group group) {
@@ -74,6 +73,17 @@ public class Bullet extends GameObject {
 
     }
 
+    @Override
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
+    }
+
+
     private void move() {
 
         switch (dir) {
@@ -125,5 +135,6 @@ public class Bullet extends GameObject {
     public void die() {
         this.living = false;
     }
+
 
 }
