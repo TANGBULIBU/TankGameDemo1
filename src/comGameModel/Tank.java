@@ -1,10 +1,15 @@
 package comGameModel;
 
+import comGameModel.observer.TankFireEvent;
+import comGameModel.observer.TankFireHandler;
+import comGameModel.observer.TankFireObserver;
 import comGameModel.stragety.DefaultFireStrategy;
 import comGameModel.stragety.FireStrategy;
 import comGameModel.stragety.FourDirFireStrategy;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -15,7 +20,7 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
 
     int oldX, oldY;//记录上一次位置所在
     public Dir dir = Dir.DOWN;//特有属性 默认朝向
-    private static final int SPEED = 4;//不能呗改变
+    private static final int SPEED = 4;//不能被改变
 
     public static int WIDTH = ResourceMgr.goodTankU.getWidth();
     public static int HEIGHT = ResourceMgr.goodTankU.getHeight();
@@ -223,4 +228,12 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
         return HEIGHT;
     }
 
+    private List<TankFireObserver> fireObservers = Arrays.asList(new TankFireHandler());
+
+    public void handleFireKey() {
+        TankFireEvent event = new TankFireEvent(this);
+        for (TankFireObserver o : fireObservers) {
+            o.actionOnFire(event);
+        }
+    }
 }

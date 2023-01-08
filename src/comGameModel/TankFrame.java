@@ -14,12 +14,9 @@ public class TankFrame extends Frame {
 
     GameModel gm = GameModel.getInstance();
 
-
     static final int GAME_WIDTH = 1080, GAME_HEIGHT = 960;//抽象为常量 更改一个位置即可
 
-
     public TankFrame() {
-
 
         setSize(GAME_WIDTH, GAME_HEIGHT);//设置窗口
         setResizable(false);
@@ -33,9 +30,7 @@ public class TankFrame extends Frame {
                 System.exit(0);
             }
         });
-
         //传入子弹对象
-
     }
 
     Image offScreenImage = null;//定义图片
@@ -60,13 +55,12 @@ public class TankFrame extends Frame {
         gm.paint(g);
     }
 
-    class MyKeyListener extends KeyAdapter {
+    class MyKeyListener extends KeyAdapter {//MyKeyListener也就是观察者 监听事件
 
         boolean bL = false;
         boolean bU = false;
         boolean bR = false;
         boolean bD = false;
-
 
         @Override
         public void keyPressed(KeyEvent e) {//按键
@@ -87,9 +81,7 @@ public class TankFrame extends Frame {
 
                 default:
                     break;
-
             }
-
             setMainTankDir();
         }
 
@@ -110,7 +102,7 @@ public class TankFrame extends Frame {
                     bD = false;
                     break;
                 case KeyEvent.VK_J:
-                    gm.getMainTank().fire();
+                    gm.getMainTank().handleFireKey();
                     break;
                 default:
                     break;
