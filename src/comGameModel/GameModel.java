@@ -4,6 +4,7 @@ package comGameModel;
 import comGameModel.cor.ColliderChain;
 
 import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class GameModel {//定义物体和他有关
 
 
     //   Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD);//this 就是控制子弹的发射
-    Tank myTank;
+    Tank myTank;//记录数据
     //    List<Tank> tanks = new ArrayList<>();//数组
     //    List<Bullet> bullets = new ArrayList<>();//数组
     //    List<Explode> explodes = new ArrayList<>();
@@ -116,4 +117,59 @@ public class GameModel {//定义物体和他有关
         return myTank;
     }
 
+    //保存
+    public void save() {
+        File f = new File("F:\\Java mashibing TankDemo/tank.data");
+        ObjectOutputStream oos=null;
+
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream(f));//写入
+            oos.writeObject(myTank);
+            oos.writeObject(objects);//写入
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {//不要忘记关闭流
+            if (oos!=null){
+                try {
+                    oos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    public void load() {
+
+        File f = new File("F:\\Java mashibing TankDemo/tank.data");
+
+        ObjectInputStream ois = null;//读取
+        try {
+            ois = new ObjectInputStream(new FileInputStream(f));
+
+            //先写入的谁 就先读取谁
+
+            myTank = (Tank) ois.readObject();
+
+            objects = (List) ois.readObject();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }finally {
+            if (ois!=null){
+                try {
+                    ois.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+    }
 }

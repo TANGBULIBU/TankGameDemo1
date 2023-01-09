@@ -228,7 +228,9 @@ public class Tank extends GameObject {//将坦克固有类封装给坦克 并且实现构造方法 
         return HEIGHT;
     }
 
-    private List<TankFireObserver> fireObservers = Arrays.asList(new TankFireHandler());
+    private  List<TankFireObserver> fireObservers = Arrays.asList(new TankFireHandler());
+//    private transient List<TankFireObserver> fireObservers = Arrays.asList(new TankFireHandler());
+    //transient透明的 就是序列化时不管他
 
     public void handleFireKey() {
         TankFireEvent event = new TankFireEvent(this);

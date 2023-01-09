@@ -79,6 +79,14 @@ public class TankFrame extends Frame {
                     bD = true;
                     break;
 
+                case KeyEvent.VK_T://保存
+                    gm.save();
+                    break;
+                case KeyEvent.VK_L:
+                    gm.load();
+                    break;
+
+
                 default:
                     break;
             }
@@ -112,7 +120,7 @@ public class TankFrame extends Frame {
 
         private void setMainTankDir() {//确定朝向
 
-            Tank myTank=gm.getMainTank();
+            Tank myTank = gm.getMainTank();
 
             if (!bL && !bU && !bD && !bR) gm.getMainTank().setMoving(false);//不按下这些键 就不会移动
             else {
